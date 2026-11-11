@@ -1,0 +1,16 @@
+name: Build Mod
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Make Gradle executable
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
